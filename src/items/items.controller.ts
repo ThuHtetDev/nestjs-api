@@ -1,11 +1,16 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
+import { ItemsService } from './items.service';
+import { Item } from './interfaces/item.interface';
 
 @Controller('items')
 export class ItemsController {
+    // contruct service
+    constructor(private readonly itemsService: ItemsService){} 
+
     @Get()
-    findAll():string {
-        return 'get all items';
+    findAll():Item[] {
+        return this.itemsService.findAll();
     }
 
     @Post()
@@ -15,8 +20,8 @@ export class ItemsController {
     }
 
     @Get(':item')
-    findOne(@Param() param):string {
-        return `Item: ${param.item}`;
+    findOne(@Param() param):Item {
+        return this.itemsService.findOne(param.item);
     }
 
     @Delete(':item')
