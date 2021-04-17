@@ -8,9 +8,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { IdeasModule } from './ideas/ideas.module';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
-  imports: [ItemsModule,TypeOrmModule.forRoot(), IdeasModule ],
+  imports: [ItemsModule,TypeOrmModule.forRoot(), IdeasModule, TodosModule ],
   controllers: [AppController, ItemsController, UsersController],
   providers: [AppService, ItemsService, UsersService],
 })
