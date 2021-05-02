@@ -7,4 +7,7 @@ export class CreateUserDTO{
     @IsString()
     @MaxLength(10)
     name:string;
+    username:string;
+    email:string;
+    password:string;
 }

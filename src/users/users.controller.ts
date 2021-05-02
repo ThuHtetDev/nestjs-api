@@ -8,12 +8,15 @@ export class UsersController {
     constructor(private usersService: UsersService){}
 
     @Get()
-    findAll(@Query('name') name?:string): UserEntity[]{
-        return this.usersService.getAll(name);
+    findAll(){
+        return this.usersService.getAll();
     }
+    // findAll(@Query('name') name?:string){
+    //     return this.usersService.getAll(name);
+    // }
 
     @Get(':id')
-    findByOne(@Param('id',ParseIntPipe) id:number): UserEntity{
+    findByOne(@Param('id',ParseIntPipe) id:number){
         // ParseIntPipe (auto change type of id to number)
         const user = this.usersService.getOne(Number(id));
         if(!user) throw new NotFoundException();
@@ -22,7 +25,7 @@ export class UsersController {
     }
 
     @Post()
-    createUser(@Body() body:CreateUserDTO): UserEntity{
+    createUser(@Body() body:CreateUserDTO){
         return this.usersService.create(body);
     }
 }
